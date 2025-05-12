@@ -2,6 +2,9 @@ import requests
 import json
 import sys
 import os
+from functions import *
+from observations import *
+
 
 
 def cls():
@@ -14,20 +17,9 @@ headers = {
     "Accept": "application/fhir+json"
 }
 
-# Get all patients
-url = base_url + "Patient?_count=5" 
+# Print Patient Info
+#patient_info(5)
 
-response = requests.get(url, headers=headers)
-
-if response.status_code == 200:
-    all_patients = response.json()
-    
-    # Salva todos os pacientes em um arquivo
-    with open("all_patients.txt", 'w', encoding='utf-8') as file:
-        json.dump(all_patients, file, indent=4)
-
-    print("Lista de pacientes salva em all_patients.txt")
-else:
-    print("Erro ao buscar pacientes.")
-    print("Status:", response.status_code)
-    print("Resposta:", response.text)
+# Get Observation from patient
+num_patient=1
+patient_obs(num_patient)
